@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './style.css';
+import React from "react";
+import * as ReactBootStrap from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./style.css";
 
-function Nav() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const Navbar = () => {
+    return (
+        <>
+            <ReactBootStrap.Navbar collapseOnSelect style={{minHeight: '5vh'}}expand="xl" bg="danger" variant="dark">
+                <ReactBootStrap.Navbar.Brand href="#home">SwankyStudios</ReactBootStrap.Navbar.Brand>
+                <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
+                    <ReactBootStrap.Nav className="mr-auto">
+                        <Link to="/features">
+                            <ReactBootStrap.Nav.Link href="#features">Features</ReactBootStrap.Nav.Link>
+                        </Link>
+                        <Link to="/pricing">
+                            <ReactBootStrap.Nav.Link href="#pricing">Pricing</ReactBootStrap.Nav.Link>
+                        </Link>
+                        <ReactBootStrap.NavDropdown title="YEET" id="collasible-nav-dropdown">
+                            <ReactBootStrap.NavDropdown.Item href="#action/3.1">Action</ReactBootStrap.NavDropdown.Item>
+                            <ReactBootStrap.NavDropdown.Item href="#action/3.2">Another action</ReactBootStrap.NavDropdown.Item>
+                            <ReactBootStrap.NavDropdown.Item href="#action/3.3">Something</ReactBootStrap.NavDropdown.Item>
+                            <ReactBootStrap.NavDropdown.Divider />
+                            <ReactBootStrap.NavDropdown.Item href="#action/3.4">Separated link</ReactBootStrap.NavDropdown.Item>
+                        </ReactBootStrap.NavDropdown>
+                    </ReactBootStrap.Nav>
+                    <ReactBootStrap.Nav>
+                        <Link to="/deets">
+                            <ReactBootStrap.Nav.Link href="#deets">More deets</ReactBootStrap.Nav.Link>
+                        </Link>
+                        <Link to="/dankmemes">
+                            <ReactBootStrap.Nav.Link eventKey={2} href="#memes">
+                                Dank memes
+                            </ReactBootStrap.Nav.Link>
+                        </Link>
+                    </ReactBootStrap.Nav>
+                </ReactBootStrap.Navbar.Collapse>
+            </ReactBootStrap.Navbar>
+        </>
+    );
+};
 
-export default Nav;
+export default Navbar;

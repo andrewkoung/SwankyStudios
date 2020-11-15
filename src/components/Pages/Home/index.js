@@ -1,12 +1,16 @@
-import logo from './logo.svg';
-import Nav from '../../Generic/Navbar';
 import './style.css';
 
 function Home() {
   return (
-    <div className="App"> 
-        <Nav />
-    </div>
+    <>
+        <div className="container">
+            <div className="row">
+                <div className="col-4">
+                    <p>Hi: {process.env.REACT_APP_apiKey}</p>
+                </div>
+            </div>
+        </div>
+    </>
   );
 }
 
