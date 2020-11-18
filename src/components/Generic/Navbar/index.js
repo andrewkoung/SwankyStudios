@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useHistory } from 'react-router-dom';
 import * as ReactBootStrap from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useAuth } from "../../Session/AuthContext";
 import "./style.css";
 
 const Navbar = () => {
+    const { currentUser, logout } = useAuth();
+    const [error, setError] = useState("");
+    const history = useHistory()
+
+    async function handleLogout() {
+        setError('')
+
+        try {
+            await logout();
+            history.pushState('/home');
+        } catch {
+            setError('Failed to log out')
+        }
+    }
+
     return (
         <>
             <ReactBootStrap.Navbar collapseOnSelect style={{minHeight: '5vh'}}expand="xl" bg="danger" variant="dark">
-                <ReactBootStrap.Navbar.Brand href="#home">SwankyStudios</ReactBootStrap.Navbar.Brand>
+                <ReactBootStrap.Navbar.Brand>SwankyStudios</ReactBootStrap.Navbar.Brand>
                 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
                     <ReactBootStrap.Nav className="mr-auto">
-                        <Link to="/features">
-                            <ReactBootStrap.Nav.Link href="#features">Features</ReactBootStrap.Nav.Link>
+                        <Link to="/signup">
+                            <ReactBootStrap.Nav.Link>Signup</ReactBootStrap.Nav.Link>
                         </Link>
-                        <Link to="/pricing">
-                            <ReactBootStrap.Nav.Link href="#pricing">Pricing</ReactBootStrap.Nav.Link>
-                        </Link>
+                        <ReactBootStrap.Nav.Link to="/pricing">Pricing</ReactBootStrap.Nav.Link>
                         <ReactBootStrap.NavDropdown title="YEET" id="collasible-nav-dropdown">
                             <ReactBootStrap.NavDropdown.Item href="#action/3.1">Action</ReactBootStrap.NavDropdown.Item>
                             <ReactBootStrap.NavDropdown.Item href="#action/3.2">Another action</ReactBootStrap.NavDropdown.Item>
@@ -26,14 +41,18 @@ const Navbar = () => {
                         </ReactBootStrap.NavDropdown>
                     </ReactBootStrap.Nav>
                     <ReactBootStrap.Nav>
-                        <Link to="/deets">
-                            <ReactBootStrap.Nav.Link href="#deets">More deets</ReactBootStrap.Nav.Link>
-                        </Link>
-                        <Link to="/dankmemes">
-                            <ReactBootStrap.Nav.Link eventKey={2} href="#memes">
-                                Dank memes
-                            </ReactBootStrap.Nav.Link>
-                        </Link>
+                        {console.log(currentUser)}
+                        {
+                            (!currentUser) ? (
+                                <Link to="/login">
+                                    Login
+                                </Link>
+                            ) : (
+                                <Button variant="link" onClick={handleLogout}>
+                                    Log out
+                                </Button>
+                            )
+                        }
                     </ReactBootStrap.Nav>
                 </ReactBootStrap.Navbar.Collapse>
             </ReactBootStrap.Navbar>

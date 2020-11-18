@@ -6,7 +6,7 @@ function Home() {
         <div className="container">
             <div className="row">
                 <div className="col-4">
-                    <p>Hi: {process.env.REACT_APP_apiKey}</p>
+                  Home
                 </div>
             </div>
         </div>
