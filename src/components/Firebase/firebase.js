@@ -27,6 +27,9 @@ class Firebase {
         this.functions = app.functions();
         this.firestore = app.firestore();
     }
+
+    // Real-time DB paths
+    user = uid => this.db.ref(`users/${uid}`);
 }
 
 export default Firebase;

@@ -24,4 +24,5 @@ function App() {
   );
 }
 
+//It wraps the App with the AuthContext provider AFTER the FirebaseContext provider
 export default withAuthentication(App);

@@ -12,8 +12,18 @@ const withAuthentication = (Component) => {
         const [currentUser, setCurrentUser] = useState();
         const [loading, setLoading] = useState(true) 
 
-        function signup(email, password) {
-            return firebase.auth.createUserWithEmailAndPassword(email, password);
+        function signup(firstName, lastName, email, password) {
+            let obj = firebase.auth.createUserWithEmailAndPassword(email, password).then(authUser => {
+                firebase.user(authUser.user.uid).set({
+                    firstName,
+                    lastName,
+                    email,
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+            return obj;
         }
 
         function login(email, password) {
@@ -47,6 +57,7 @@ const withAuthentication = (Component) => {
         );
     }
 
+    //Wraps AuthProvider with context where it consumes the props and firebase object from FirebaseContext
     return withFirebase(AuthProvider);
 };
 

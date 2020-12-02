@@ -15,11 +15,18 @@ const Navbar = () => {
 
         try {
             await logout();
-            history.pushState('/home');
         } catch {
             setError('Failed to log out')
         }
     }
+
+    /*
+    return ( 
+        <>
+        Hi { console.log(currentUser) }
+        </>
+    );
+    */
 
     return (
         <>
@@ -29,7 +36,7 @@ const Navbar = () => {
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
                     <ReactBootStrap.Nav className="mr-auto">
                         <Link to="/signup">
-                            <ReactBootStrap.Nav.Link>Signup</ReactBootStrap.Nav.Link>
+                            <ReactBootStrap.Nav.Link>{(currentUser) ? "Show" : "No Show"}</ReactBootStrap.Nav.Link>
                         </Link>
                         <ReactBootStrap.Nav.Link to="/pricing">Pricing</ReactBootStrap.Nav.Link>
                         <ReactBootStrap.NavDropdown title="YEET" id="collasible-nav-dropdown">
@@ -41,7 +48,6 @@ const Navbar = () => {
                         </ReactBootStrap.NavDropdown>
                     </ReactBootStrap.Nav>
                     <ReactBootStrap.Nav>
-                        {console.log(currentUser)}
                         {
                             (!currentUser) ? (
                                 <Link to="/login">
