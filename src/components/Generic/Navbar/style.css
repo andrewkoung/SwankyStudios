@@ -1,0 +1,11 @@
+@media only screen and (max-width: 991px) {
+    #desktop-logo { 
+        display: none;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    #myaccount-logo {
+        display: none;
+    }
+}
