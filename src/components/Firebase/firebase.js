@@ -30,6 +30,9 @@ class Firebase {
 
     // Real-time DB paths
     user = uid => this.db.ref(`users/${uid}`);
+
+    product = uid => this.db.ref(`products/${uid}`);
+    products = () => this.db.ref(`products`);
 }
 
 export default Firebase;

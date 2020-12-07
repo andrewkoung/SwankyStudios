@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Session/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import { Container } from 'react-bootstrap'
 
 function Login() {
   const emailRef = useRef();
@@ -18,7 +19,7 @@ function Login() {
           setError('')
           setLoading(true)
           await login(emailRef.current.value, passwordRef.current.value);
-          history.push("/");
+          history.push("/myaccount");
       } catch {
           setError('Failed to sign in')
       }
@@ -26,7 +27,8 @@ function Login() {
   }
 
   return (
-    <>
+    <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+      <div className="w-100" style={{ maxWidth: "400px" }}>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Login</h2>
@@ -49,7 +51,8 @@ function Login() {
       <div className="w-100 text-center mt-2">
           Need an account? <Link to="/signup">Create one</Link>
       </div>
-    </>
+      </div>
+    </Container>
   );
 }
 

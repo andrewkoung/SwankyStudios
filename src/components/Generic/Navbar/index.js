@@ -1,69 +1,46 @@
 import React, { useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 import * as ReactBootStrap from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useAuth } from "../../Session/AuthContext";
+import PersonOutlineIcon  from '@material-ui/icons/PersonOutline';
 import "./style.css";
 
 const Navbar = () => {
-    const { currentUser, logout } = useAuth();
-    const [error, setError] = useState("");
-    const history = useHistory()
+  const { currentUser, logout } = useAuth();
+  const [error, setError] = useState("");
+  const history = useHistory();
 
-    async function handleLogout() {
-        setError('')
+  async function handleLogout() {
+    setError("");
 
-        try {
-            await logout();
-        } catch {
-            setError('Failed to log out')
-        }
+    try {
+      await logout();
+    } catch {
+      setError("Failed to log out");
     }
-
-    /*
-    return ( 
-        <>
-        Hi { console.log(currentUser) }
-        </>
-    );
-    */
-
-    return (
-        <>
-            <ReactBootStrap.Navbar collapseOnSelect style={{minHeight: '5vh'}}expand="xl" bg="danger" variant="dark">
-                <ReactBootStrap.Navbar.Brand>SwankyStudios</ReactBootStrap.Navbar.Brand>
-                <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
-                    <ReactBootStrap.Nav className="mr-auto">
-                        <Link to="/signup">
-                            <ReactBootStrap.Nav.Link>{(currentUser) ? "Show" : "No Show"}</ReactBootStrap.Nav.Link>
-                        </Link>
-                        <ReactBootStrap.Nav.Link to="/pricing">Pricing</ReactBootStrap.Nav.Link>
-                        <ReactBootStrap.NavDropdown title="YEET" id="collasible-nav-dropdown">
-                            <ReactBootStrap.NavDropdown.Item href="#action/3.1">Action</ReactBootStrap.NavDropdown.Item>
-                            <ReactBootStrap.NavDropdown.Item href="#action/3.2">Another action</ReactBootStrap.NavDropdown.Item>
-                            <ReactBootStrap.NavDropdown.Item href="#action/3.3">Something</ReactBootStrap.NavDropdown.Item>
-                            <ReactBootStrap.NavDropdown.Divider />
-                            <ReactBootStrap.NavDropdown.Item href="#action/3.4">Separated link</ReactBootStrap.NavDropdown.Item>
-                        </ReactBootStrap.NavDropdown>
-                    </ReactBootStrap.Nav>
-                    <ReactBootStrap.Nav>
-                        {
-                            (!currentUser) ? (
-                                <Link to="/login">
-                                    Login
-                                </Link>
-                            ) : (
-                                <Button variant="link" onClick={handleLogout}>
-                                    Log out
-                                </Button>
-                            )
-                        }
-                    </ReactBootStrap.Nav>
-                </ReactBootStrap.Navbar.Collapse>
-            </ReactBootStrap.Navbar>
-        </>
-    );
+  }
+  return (
+    <>
+      <ReactBootStrap.Navbar bg="light" expand="lg">
+        <ReactBootStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <ReactBootStrap.Navbar.Collapse id="basic-navbar-nav">
+            <ReactBootStrap.Nav className="d-flex w-100 justify-content-center ml-3">
+                <ReactBootStrap.Nav.Link as={Link} to="/">Home</ReactBootStrap.Nav.Link>
+                <ReactBootStrap.Nav.Link as={Link} to="/login">Login</ReactBootStrap.Nav.Link>
+                <ReactBootStrap.Navbar.Brand id="desktop-logo" style={{marginLeft: '16px'}}>
+                    <Link to="/">SwankyStudios</Link>
+                </ReactBootStrap.Navbar.Brand>
+                <ReactBootStrap.Nav.Link as={Link} to="/signup">Signup</ReactBootStrap.Nav.Link>
+                <ReactBootStrap.Nav.Link as={Link} to="/">Link</ReactBootStrap.Nav.Link>
+            </ReactBootStrap.Nav>
+        </ReactBootStrap.Navbar.Collapse>
+        <Link id="myaccount-logo" to="/myaccount" inline>
+            <PersonOutlineIcon />
+        </Link>
+      </ReactBootStrap.Navbar>
+    </>
+  );
 };
 
 export default Navbar;
