@@ -26,13 +26,11 @@ const Navbar = () => {
         <ReactBootStrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
         <ReactBootStrap.Navbar.Collapse id="basic-navbar-nav">
             <ReactBootStrap.Nav className="d-flex w-100 justify-content-center ml-3">
-                <ReactBootStrap.Nav.Link as={Link} to="/">Home</ReactBootStrap.Nav.Link>
-                <ReactBootStrap.Nav.Link as={Link} to="/login">Login</ReactBootStrap.Nav.Link>
+                <ReactBootStrap.Nav.Link as={Link} to="/">SHOP</ReactBootStrap.Nav.Link>
                 <ReactBootStrap.Navbar.Brand id="desktop-logo" style={{marginLeft: '16px'}}>
                     <Link to="/">SwankyStudios</Link>
                 </ReactBootStrap.Navbar.Brand>
-                <ReactBootStrap.Nav.Link as={Link} to="/signup">Signup</ReactBootStrap.Nav.Link>
-                <ReactBootStrap.Nav.Link as={Link} to="/">Link</ReactBootStrap.Nav.Link>
+                <ReactBootStrap.Nav.Link as={Link} to="/">BOOK</ReactBootStrap.Nav.Link>
             </ReactBootStrap.Nav>
         </ReactBootStrap.Navbar.Collapse>
         <Link id="myaccount-logo" to="/myaccount" inline>
